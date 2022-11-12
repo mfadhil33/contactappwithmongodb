@@ -1,0 +1,28 @@
+<div class="container mt-3">
+    <div class="row">
+        <div class="col-md-8">
+            <h2>Detail Contact</h2>
+            <div class="card" style="width: 18rem">
+                <div class="card-body">
+                    <% if (!findData) { %>
+                      <div class="alert alert-danger fw-bold" role="alert">
+                        Data contact tidak ada. <a href="/contact" class="alert-link fw-normal">    &laquo;Kembali ke daftar contact</a>
+                      </div>
+                    <% } else {%>
+                    <h5 class="card-title"><%= findData.nama  %> </h5>
+                    <h6 class="card-subtitle mb-2 text-muted"><%= findData.noHp  %> </h6>
+                    <p class="card-text"><%= findData.email  %> </p>
+                    <!-- <a href="/contact/delete/<%= findData.nama %>" class="btn btn-danger badge"  onclick="return confirm('apakah anda yakin menghapusnya?')">Hapus</a> -->
+
+                    <form action="/contact?_method=DELETE" method="POST" class="d-inline">
+                        <input type="hidden" name="nama" value="<%= findData.nama %>">
+                        <button type="submit" class="btn btn-danger badge" onclick="return confirm('Apakah anda yakin ingin menghapusnya?')">Hapus</button>
+                    </form>
+                    <a href="/contact/ubah/<%= findData.nama %>" class="btn btn-primary badge">Ubah</a>
+                    <a href="/contact" class="card-link d-block mt-3">&laquo;   Kembali ke daftar contact</a>
+                </div>
+            </div>
+            <% } %> 
+        </div>
+    </div>
+</div>
